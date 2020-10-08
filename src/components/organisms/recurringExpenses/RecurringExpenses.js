@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../../../App.css';
 import { Card } from '../../molecules';
+import { useRecoilState } from 'recoil';
+import { RecurringExpensesTotal } from '../../../recoil/atoms';
 
 const RecurringExpenses = () => {
   const [expenses, setExpenses] = useState([
@@ -21,7 +23,7 @@ const RecurringExpenses = () => {
       due_date: '15'
     }
   ]);
-  const [total, setTotal] = useState(0)
+  const [total, setTotal] = useRecoilState(RecurringExpensesTotal)
 
   useEffect(() => {
     let total = 0;

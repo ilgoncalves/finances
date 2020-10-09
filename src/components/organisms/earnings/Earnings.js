@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../../App.css';
 import { Card } from '../../molecules';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { EarningsTotal } from '../../../recoil/atoms';
 
 const Earnings = () => {
@@ -19,11 +19,11 @@ const Earnings = () => {
     }, {
       id: 3,
       name: 'Rent',
-      value: 650.00,
+      value: 1000.00,
       date: 15
     }
   ]);
-  const [total, setTotal] = useRecoilState(EarningsTotal)
+  const setTotal = useSetRecoilState(EarningsTotal)
 
   useEffect(() => {
     let total = 0;
@@ -31,7 +31,7 @@ const Earnings = () => {
       total += earnings[index].value;
     }
     setTotal(total);
-  }, [earnings])
+  }, [earnings, setTotal])
 
   const renderEarnings = () => {
     return earnings.map(earning => <tr key={earning.id}>
@@ -43,7 +43,7 @@ const Earnings = () => {
 
 
   return (
-    <Card title={"Earnings"}>
+    <Card title={"Earnings"} icon={"money"}>
       <div>
         <div className="table-container">
           <table className="table">
@@ -58,9 +58,6 @@ const Earnings = () => {
               {renderEarnings()}
             </tbody>
           </table>
-        </div>
-        <div>
-          <p>Total: {total}</p>
         </div>
       </div>
     </Card>

@@ -21,10 +21,61 @@ h1,h2,h3,h4,h5,h6, span, p {
   padding: .3rem .75rem;
 }
 
+/* Button */
+.button {
+  background-color: #db6ab5;
+  color: white;
+  border: 1px solid #db6ab5;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.button.danger {
+  background-color: transparent;
+  color: #db6ab5
+}
+.button.small {
+  font-size: 12px;
+}
+.button-icon {
+  background-color: transparent;
+  padding: 5px;
+  border-radius: 50%;
+  border: 2px solid #db6ab5;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Input */
+.input-group {
+  margin-bottom: 10px;
+}
+.input-group label {
+  font-size: 10px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+.input-group>.input {
+  width: 100%;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 2px 5px;
+  border: none;
+}
+.input:focus {
+  outline: none;
+}
+
 /* Card */
 .card {
   background-color: #1e273a;
   border-radius: 5px;
+  position: relative;
+  box-shadow: 5px 5px 10px #1e273a;
 }
 .card .content {
   padding: 10px 40px;
@@ -55,4 +106,26 @@ h1,h2,h3,h4,h5,h6, span, p {
   width: 100%;
   padding-right: 40px;
   padding-left: 40px;
+}
+
+/* Card Button Floating */
+.button-container-floating {
+  position: absolute;
+  top: -15px;
+  padding: 5px;
+  border-radius: 50%;
+  right: -15px;
+  background-color: #1e273a;
+  box-shadow: 1px 1px 10px #1e273a;
+}
+
+/* Widget */
+.form-widget {
+  background-color: #865bd6;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 5px 5px #6e3dc8;
+  position: fixed;
+  width: 200px;
+  z-index: 1;
 }

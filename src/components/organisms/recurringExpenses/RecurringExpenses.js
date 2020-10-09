@@ -1,40 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import '../../../App.css';
 import { Card } from '../../molecules';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { RecurringExpensesTotal } from '../../../recoil/atoms';
+import { ADD_RECURRING_EXPENSE_BUTTON_ID } from '../../../utils';
+import { FirebaseService } from '../../../services';
 
-const RecurringExpenses = () => {
-  const [expenses, setExpenses] = useState([
-    {
-      id: 1,
-      name: 'Rent',
-      cost: 650.00,
-      due_date: '15'
-    }, {
-      id: 2,
-      name: 'Rent',
-      cost: 650.00,
-      due_date: '15'
-    }, {
-      id: 3,
-      name: 'Rent',
-      cost: 650.00,
-      due_date: '15'
-    }
-  ]);
-  const [total, setTotal] = useRecoilState(RecurringExpensesTotal)
+const RecurringExpenses = ({clickAdd}) => {
+  const [expenses, setExpenses] = useState([]);
+  const setTotal = useSetRecoilState(RecurringExpensesTotal)
 
   useEffect(() => {
     let total = 0;
     for (let index = 0; index < expenses.length; index++) {
-      total += expenses[index].cost;
+      total += parseFloat(expenses[index].cost);
     }
     setTotal(total);
-  }, [expenses])
+  }, [expenses, setTotal])
+
+  useEffect(() => {
+    FirebaseService.getDataList('recurring_expenses', setExpenses);
+  }, [setTotal])
 
   const renderExpenses = () => {
-    return expenses.map(expense => <tr key={expense.id}>
+    return expenses.map(expense => <tr key={expense.key}>
       <td>{expense.name}</td>
       <td>R$ {expense.cost}</td>
       <td>{expense.due_date}</td>
@@ -43,7 +31,7 @@ const RecurringExpenses = () => {
 
 
   return (
-    <Card title={"Recurring Expenses"}>
+    <Card title={"Recurring Expenses"} icon={"recurring"} floatingButton onClickFloating={clickAdd} floatingButtonId={ADD_RECURRING_EXPENSE_BUTTON_ID}>
       <div>
         <div className="table-container">
           <table className="table">
@@ -58,9 +46,6 @@ const RecurringExpenses = () => {
               {renderExpenses()}
             </tbody>
           </table>
-        </div>
-        <div>
-          <p>Total: {total}</p>
         </div>
       </div>
     </Card>

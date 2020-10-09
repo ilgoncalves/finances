@@ -3,9 +3,12 @@ import { Route, Switch, Router } from "react-router";
 import { createBrowserHistory } from "history";
 import { Login, Home } from './components/pages';
 import { RecoilRoot } from 'recoil';
+import dotenv from 'dotenv';
+import './App.css';
 
 
 const history = createBrowserHistory();
+dotenv.config();
 
 function App() {
   return (

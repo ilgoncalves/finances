@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from '../../molecules';
-import { useSetRecoilState } from 'recoil';
-import { RecurringExpensesTotal } from '../../../recoil/atoms';
+import { useSetRecoilState, useRecoilState } from 'recoil';
+import { RecurringExpensesTotal, RecurringExpensesState } from '../../../recoil/atoms';
 import { ADD_RECURRING_EXPENSE_BUTTON_ID } from '../../../utils';
 import { FirebaseService } from '../../../services';
 
 const RecurringExpenses = ({clickAdd}) => {
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useRecoilState(RecurringExpensesState);
   const setTotal = useSetRecoilState(RecurringExpensesTotal)
 
   useEffect(() => {

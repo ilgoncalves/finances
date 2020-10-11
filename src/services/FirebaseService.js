@@ -5,7 +5,7 @@ class FirebaseService {
 
     let query = firebaseDatabase.ref(nodePath);
 
-    query.on('value', dataSnapshot => {
+    query.once('value', dataSnapshot => {
       let items = [];
       dataSnapshot.forEach(childSnapshot => {
         let item = childSnapshot.val();
@@ -18,11 +18,10 @@ class FirebaseService {
     return query;
   };
 
-  static pushData = (node, objToSubmit) => {
+  static pushData = (node, objToSubmit, callback) => {
     const ref = firebaseDatabase.ref(node).push();
     const id = firebaseDatabase.ref(node).push().key;
-    ref.set(objToSubmit);
-    return id;
+    ref.set(objToSubmit, (erro) => {callback(erro, id)});
   };
 
 }

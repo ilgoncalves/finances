@@ -16,14 +16,17 @@ const AddRecurringExpense = ({ show, dispose }) => {
   })
 
   const submit = () => {
-    FirebaseService.pushData('recurring_expenses', form, (function (setExpenses, dispose) {
-      return function (erro, id) {
-        if (!erro) {
-          setExpenses([...expenses, { ...form, key: id }]);
-          dispose();
-        }
+    FirebaseService.pushData('recurring_expenses', form, (erro, id) => {
+      if (!erro) {
+        setExpenses([...expenses, { ...form, key: id }]);
+        setForm({
+          name: '',
+          cost: '',
+          due_date: ''
+        })
+        dispose();
       }
-    })(setExpenses, dispose));
+    });
   }
 
   const cancel = () => {

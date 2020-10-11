@@ -24,8 +24,8 @@ class FirebaseService {
     ref.set(objToSubmit, (erro) => { callback(erro, id) });
   };
 
-  static remove = (node, id) => {
-    return firebaseDatabase.ref(node + '/' + id).remove();
+  static remove = (node, id, callback) => {
+    return firebaseDatabase.ref(node + '/' + id).remove(callback);
   };
 
 }

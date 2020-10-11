@@ -1,26 +1,17 @@
 import React, { useEffect } from 'react';
 import { Card } from '../../molecules';
 import { ButtonIcon } from '../../atoms';
-import { useSetRecoilState, useRecoilState } from 'recoil';
-import { RecurringExpensesTotal, RecurringExpensesState } from '../../../recoil/atoms';
+import { useRecoilState } from 'recoil';
+import { RecurringExpensesState } from '../../../recoil/atoms';
 import { ADD_RECURRING_EXPENSE_BUTTON_ID } from '../../../utils';
 import { FirebaseService } from '../../../services';
 
 const RecurringExpenses = ({clickAdd}) => {
   const [expenses, setExpenses] = useRecoilState(RecurringExpensesState);
-  const setTotal = useSetRecoilState(RecurringExpensesTotal)
-
-  useEffect(() => {
-    let total = 0;
-    for (let index = 0; index < expenses.length; index++) {
-      total += parseFloat(expenses[index].cost);
-    }
-    setTotal(total);
-  }, [expenses, setTotal])
 
   useEffect(() => {
     FirebaseService.getDataList('recurring_expenses', setExpenses);
-  }, [setTotal])
+  }, [setExpenses])
 
   const removeExpense = (index) => {
     const auxexpenses = [...expenses];

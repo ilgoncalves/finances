@@ -21,7 +21,11 @@ class FirebaseService {
   static pushData = (node, objToSubmit, callback) => {
     const ref = firebaseDatabase.ref(node).push();
     const id = firebaseDatabase.ref(node).push().key;
-    ref.set(objToSubmit, (erro) => {callback(erro, id)});
+    ref.set(objToSubmit, (erro) => { callback(erro, id) });
+  };
+
+  static remove = (node, id) => {
+    return firebaseDatabase.ref(node + '/' + id).remove();
   };
 
 }

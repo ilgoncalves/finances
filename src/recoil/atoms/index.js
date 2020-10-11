@@ -1,2 +1,2 @@
-export * from './earningsTotal';
 export * from './recurringExpenses';
+export * from './EarningsState';

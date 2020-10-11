@@ -16,7 +16,6 @@ const RecurringExpenses = ({clickAdd}) => {
   const removeExpense = (index) => {
     const auxexpenses = [...expenses];
     const toRemove = auxexpenses.splice(index, 1);
-    console.log(toRemove);
     FirebaseService.remove('recurring_expenses', toRemove[0].key, (erro) => {
       if (!erro) {
         setExpenses(auxexpenses);

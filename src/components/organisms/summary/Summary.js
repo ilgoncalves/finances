@@ -1,11 +1,10 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { EarningsTotal } from '../../../recoil/atoms';
-import { RecurringExpensesTotal } from '../../../recoil/selectors';
+import { RecurringExpensesTotal, EarningsTotal } from '../../../recoil/selectors';
 
 const Summary = () => {
-  const Earnings = useRecoilValue(EarningsTotal)
-  const RecurringExpenses = useRecoilValue(RecurringExpensesTotal)
+  const Earnings = useRecoilValue(EarningsTotal);
+  const RecurringExpenses = useRecoilValue(RecurringExpensesTotal);
 
   return (
     <div className="summary-container py-5">

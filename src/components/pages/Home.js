@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { RecurringExpenses, Summary, Earnings, AddRecurringExpense } from '../organisms';
+import { RecurringExpenses, Summary, Earnings, AddRecurringExpense, AddEarnings } from '../organisms';
 
 const Home = () => {
   const [showAddRecurringExpenses, setShowAddRecurringExpenses] = useState(false);
+  const [showAddEarning, setShowAddEarning] = useState(false);
 
   return (
     <div className="container-fluid">
@@ -16,7 +17,8 @@ const Home = () => {
 
             </div>
             <div className="col-6">
-              <Earnings />
+              <Earnings clickAdd={() => setShowAddEarning(true)}/>
+              <AddEarnings show={showAddEarning} dispose={() => {setShowAddEarning(false)}}/>
             </div>
           </div>
         </div>

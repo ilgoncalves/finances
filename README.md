@@ -28,3 +28,10 @@ yarn install
 ```
 yarn start
 ```
+
+## To do
+
+- [ ] Money mask for inputs
+- [ ] Activity indicators (Loaders)
+- [ ] Bank account records
+- [ ] Payment records
